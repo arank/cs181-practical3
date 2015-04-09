@@ -1,8 +1,10 @@
 import musicbrainzngs
 import csv
 import gzip
+import operator
 
 artists_file = 'artists.csv.gz'
+extractd_artist_file = 'extracted_artists.csv'
 
 artist_profiles = {}
 def extract_artist_data():
@@ -36,6 +38,23 @@ def extract_artist_data():
 
             except:
                 print str(row[0])+","+str(row[1])+",,,,"
+
+
+def genere_histogram():
+    hist = {}
+    with open(extractd_artist_file, 'r') as art_fh:
+        art_csv = csv.reader(art_fh, delimiter=',', quotechar='"')
+        next(art_csv, None)
+        for row in art_csv:
+            if str(row[4]) != "":
+                for word in str(row[4]).split():
+                    if word in hist.keys():
+                        hist[word] += 1
+                    else:
+                        hist[word] = 1
+
+        print hist
+
 
 
 
