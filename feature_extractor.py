@@ -59,4 +59,5 @@ def genere_histogram():
 
 
 musicbrainzngs.set_useragent("app", "version")
-extract_artist_data()
+# extract_artist_data()
+genere_histogram()
